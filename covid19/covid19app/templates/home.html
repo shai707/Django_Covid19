@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Coronavirus Israel  
+ <img src="https://www.worldometers.info/img/flags/small/tn_is-flag.gif" width="60" border="1 px solid #aaa">  </h1> </br></br>
+  <span class="badge badge-pill badge-primary"> Date: {{ ontime }}</span>
+
+
+<div class="progress">
+  <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="10" aria-valuemax="100">  
+
+
+  </div>
+</div></br></br>
+
+<div class="card-deck">
+    <style>
+      div {
+        text-align: center;
+      }
+      h1,h3,h5 {
+        text-align: center;
+      }
+    </style>
+    <div class="card text-white bg-warning  mb-3" style="max-width: 33rem;">
+      <div class="card-header"  > <h3> All cases </h3> </div>
+      <div class="card-body">
+        <p class="card-text"> <h1> {{ all }} </h1> </p>
+      </div>
+    </div>
+    <div class="card text-white bg-success mb-3" style="max-width: 33rem;">
+      <div class="card-header"  > <h3> Recovered </h3> </div>
+      <div class="card-body">
+        <p class="card-text"> <h1> {{ recovered }} </h1>  </p>
+      </div>
+    </div>
+    <div class="card text-white bg-secondary mb-3" style="max-width: 33rem;">
+      <div class="card-header"  > <h3> New Cases </h3> </div>
+      <div class="card-body">
+      <p class="card-text"> <h1> {{ new }} </h1>  </p>
+      </div>
+    </div>
+
+</div>
+
+<div class="card-deck">
+
+    <div class="card text-white bg-danger mb-3" style="max-width: 33rem;">
+      <div class="card-header"> <h3> Deaths </h3> </div>
+      <div class="card-body">
+        <p class="card-text">  <h1> {{ deaths }}  </h1> </p>
+      </div>
+    </div>
+    <div class="card border-danger mb-3" style="max-width: 33rem;">
+      <div class="card-header"> <h3> Critical Cases </h3> </div>
+      <div class="card-body">
+      <p class="card-text">  <h1> {{ serioz }}  </h1> </p>
+      </div>
+    </div>
+    <div class="card text-white bg-dark mb-3" style="max-width: 33rem;">
+      <div class="card-header"> <h3> Total Tests </h3> </div>
+      <div class="card-body">
+      <p class="card-text">  <h1> {{ tests }}  </h1> </p>
+      </div>
+    </div>
+   
+</div></br></br></br></br>
+
+
+
+
+
+
+      <canvas id="myChart"></canvas>
+      <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: ['All Cases: {{ all }}' , 'Recovered: {{ recovered }}', 'New: {{ new }}', 'Deaths: {{ deaths }}', 'Critical Cases: {{ serioz }}'],
+              datasets: [{
+                  label: 'All cases ', 
+                  data: [{{ all }}, {{ recovered }}, {{ new }}, {{ deaths }}, {{ serioz }}],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(255, 99, 132, 255)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: true
+                          
+                      }
+                  }]
+              }
+          }
+      });
+      </script></br></br>
+
+{% endblock %}
+
